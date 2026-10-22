@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Controle do Portão</title>
+    <!-- Importa a biblioteca MQTT -->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <style>
+        body { background-color: #222; color: white; font-family: sans-serif; text-align: center; padding-top: 50px; }
+        button { width: 80%; padding: 20px; margin: 20px 0; font-size: 24px; border: none; border-radius: 10px; color: white; cursor: pointer; }
+        #btnAbrir { background-color: #4CAF50; }
+        #btnFechar { background-color: #f44336; }
+        #status { margin-top: 30px; font-size: 18px; color: #FFC107; }
+    </style>
+</head>
+<body>
+
+    <h1>Portão LoRa</h1>
+    
+    <button id="btnAbrir" onclick="enviarComando('OPEN')">ABRIR</button>
+    <button id="btnFechar" onclick="enviarComando('CLOSE')">FECHAR</button>
+    
+    <div id="status">Desconectado</div>
+
+    <script>
+        // ⚠️ TROQUE OS DADOS ABAIXO PELOS SEUS
+        const brokerUrl = "wss://c881f0c6.ala.us-east-1.emqxsl.com:8084/mqtt"; 
+        const username = "portao-usuario";
+        const password = "Portao2026";
+
+        let client;
+
+        function conectar() {
+            document.getElementById("status").innerText = "Conectando...";
+            
+            // Conecta no EMQX via WebSocket
+            client = mqtt.connect(brokerUrl, {
+                username: username,
+                password: password,
+                clientId: "app_celular_" + Math.random().toString(16).substr(2, 8)
+            });
+
+            client.on("connect", function () {
+                document.getElementById("status").innerText = "Conectado!";
+                document.getElementById("status").style.color = "#4CAF50";
+                
+                // Inscreve no tópico de status para saber se deu certo
+                client.subscribe("portao/status");
+            });
+
+            client.on("message", function (topic, message) {
+                if (topic === "portao/status") {
+                    document.getElementById("status").innerText = "Status: " + message.toString();
+                }
+            });
+
+            client.on("error", function (err) {
+                document.getElementById("status").innerText = "Erro de conexão";
+                document.getElementById("status").style.color = "#f44336";
+            });
+        }
+
+        function enviarComando(cmd) {
+            if (client && client.connected) {
+                client.publish("portao/comando", cmd);
+                document.getElementById("status").innerText = "Enviando: " + cmd + "...";
+            } else {
+                alert("Não está conectado ao broker!");
+            }
+        }
+
+        // Inicia a conexão assim que a tela abre
+        conectar();
+    </script>
+</body>
+</html>
