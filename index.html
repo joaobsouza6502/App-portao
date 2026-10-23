@@ -46,14 +46,28 @@
                 document.getElementById("status").style.color = "#4CAF50";
                 
                 // Inscreve no tópico de status para saber se deu certo
-                client.subscribe("portao/status");
+               	client.subscribe("portao/status");
+		client.subscribe("portao/evento"); // <-- Adicione esta linha
             });
 
             client.on("message", function (topic, message) {
-                if (topic === "portao/status") {
-                    document.getElementById("status").innerText = "Status: " + message.toString();
-                }
-            });
+    let msg = message.toString();
+
+    // Verifica se é a mensagem de status normal
+    if (topic === "portao/status") {
+        document.getElementById("status").innerText = "Status: " + msg;
+    }
+
+    // NOVO: Verifica se é um alerta do radar externo
+    if (topic === "portao/evento" && msg.includes("ALERTA")) {
+        // Faz o celular vibrar (funciona no Android e iPhone)
+        if (navigator.vibrate) {
+            navigator.vibrate([500, 200, 500, 200, 500]); 
+        }
+        // Mostra um pop-up na tela avisando
+        alert("⚠️ " + msg); 
+    }
+});
 
             client.on("error", function (err) {
                 document.getElementById("status").innerText = "Erro de conexão";
