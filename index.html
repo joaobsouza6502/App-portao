@@ -11,6 +11,7 @@
         button { width: 80%; padding: 20px; margin: 20px 0; font-size: 24px; border: none; border-radius: 10px; color: white; cursor: pointer; }
         #btnAbrir { background-color: #4CAF50; }
         #btnFechar { background-color: #f44336; }
+        #btnLuz { background-color: #333; color: white; border: 1px solid #555; } /* Cor inicial apagada */
         #status { margin-top: 30px; font-size: 18px; color: #FFC107; }
     </style>
 </head>
@@ -20,6 +21,8 @@
     
     <button id="btnAbrir" onclick="enviarComando('OPEN')">ABRIR</button>
     <button id="btnFechar" onclick="enviarComando('CLOSE')">FECHAR</button>
+    <!-- BOTÃO DA LUZ ADICIONADO AQUI -->
+    <button id="btnLuz" onclick="toggleLuz()">LUZ APAGADA</button>
     
     <div id="status">Desconectado</div>
 
@@ -30,6 +33,7 @@
         const password = "Portao2026";
 
         let client;
+        let luzLigada = false; // Movido para o topo para evitar erros no JavaScript
 
         function conectar() {
             document.getElementById("status").innerText = "Conectando...";
@@ -45,43 +49,41 @@
                 document.getElementById("status").innerText = "Conectado!";
                 document.getElementById("status").style.color = "#4CAF50";
                 
-                // Inscreve no tópico de status para saber se deu certo
-               	client.subscribe("portao/status");
-		client.subscribe("portao/evento"); // <-- Adicione esta linha
+                // Inscreve nos tópicos
+                client.subscribe("portao/status");
+                client.subscribe("portao/evento"); 
             });
 
             client.on("message", function (topic, message) {
-    let msg = message.toString();
+                let msg = message.toString();
 
-    // Verifica se é a mensagem de status normal
-    if (topic === "portao/status") {
-        document.getElementById("status").innerText = "Status: " + msg;
+                // Verifica se é a mensagem de status normal
+                if (topic === "portao/status") {
+                    document.getElementById("status").innerText = "Status: " + msg;
 
-	 // Sincroniza o botão físico com a nuvem (se o radar ligou, o app mostra ligado)
-        if (msg.includes("LIGHT_ON") && !luzLigada) {
-            luzLigada = true;
-            atualizarBotaoLuz();
-        } else if (msg.includes("LIGHT_OFF") && luzLigada) {
-            luzLigada = false;
-            atualizarBotaoLuz();
-        }
-    }
+                    // Sincroniza o botão físico com a nuvem
+                    if (msg.includes("LIGHT_ON") && !luzLigada) {
+                        luzLigada = true;
+                        atualizarBotaoLuz();
+                    } else if (msg.includes("LIGHT_OFF") && luzLigada) {
+                        luzLigada = false;
+                        atualizarBotaoLuz();
+                    }
+                }
 
-	 // Alerta de movimento (se o app estiver aberto, ele avisa)
-    if (topic === "portao/evento" && msg.includes("INFO: Luz ligada")) {
-        // Opcional: você pode colocar um som discreto aqui
-    }
+                // Alerta de movimento
+                if (topic === "portao/evento" && msg.includes("INFO: Luz ligada")) {
+                    // Opcional: você pode colocar um som discreto aqui
+                }
 
-    // NOVO: Verifica se é um alerta do radar externo
-    if (topic === "portao/evento" && msg.includes("ALERTA")) {
-        // Faz o celular vibrar (funciona no Android e iPhone)
-        if (navigator.vibrate) {
-            navigator.vibrate([500, 200, 500, 200, 500]); 
-        }
-        // Mostra um pop-up na tela avisando
-        alert("⚠️ " + msg); 
-    }
-});
+                // Alerta do radar externo
+                if (topic === "portao/evento" && msg.includes("ALERTA")) {
+                    if (navigator.vibrate) {
+                        navigator.vibrate([500, 200, 500, 200, 500]); 
+                    }
+                    alert("⚠️ " + msg); 
+                }
+            });
 
             client.on("error", function (err) {
                 document.getElementById("status").innerText = "Erro de conexão";
@@ -98,33 +100,31 @@
             }
         }
 
-	let luzLigada = false;
+        function toggleLuz() {
+            if (client && client.connected) {
+                let cmd = luzLigada ? "LIGHT_OFF" : "LIGHT_ON";
+                client.publish("portao/comando", cmd);
+                
+                // Atualização otimista na tela (muda antes de receber a confirmação)
+                luzLigada = !luzLigada;
+                atualizarBotaoLuz();
+            } else {
+                alert("Não está conectado!");
+            }
+        }
 
-function toggleLuz() {
-    if (client && client.connected) {
-        let cmd = luzLigada ? "LIGHT_OFF" : "LIGHT_ON";
-        client.publish("portao/comando", cmd);
-        
-        // Atualização otimista na tela
-        luzLigada = !luzLigada;
-        atualizarBotaoLuz();
-    } else {
-        alert("Não está conectado!");
-    }
-}
-
-function atualizarBotaoLuz() {
-    let btn = document.getElementById("btnLuz");
-    if (luzLigada) {
-        btn.style.backgroundColor = "#FFC107"; // Amarelo brilhante
-        btn.style.color = "black";
-        btn.innerText = "LUZ ACESA";
-    } else {
-        btn.style.backgroundColor = "#333"; // Cinza escuro
-        btn.style.color = "white";
-        btn.innerText = "LUZ APAGADA";
-    }
-}
+        function atualizarBotaoLuz() {
+            let btn = document.getElementById("btnLuz");
+            if (luzLigada) {
+                btn.style.backgroundColor = "#FFC107"; // Amarelo brilhante
+                btn.style.color = "black";
+                btn.innerText = "LUZ ACESA";
+            } else {
+                btn.style.backgroundColor = "#333"; // Cinza escuro
+                btn.style.color = "white";
+                btn.innerText = "LUZ APAGADA";
+            }
+        }
 
         // Inicia a conexão assim que a tela abre
         conectar();
