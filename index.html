@@ -56,6 +56,20 @@
     // Verifica se é a mensagem de status normal
     if (topic === "portao/status") {
         document.getElementById("status").innerText = "Status: " + msg;
+
+	 // Sincroniza o botão físico com a nuvem (se o radar ligou, o app mostra ligado)
+        if (msg.includes("LIGHT_ON") && !luzLigada) {
+            luzLigada = true;
+            atualizarBotaoLuz();
+        } else if (msg.includes("LIGHT_OFF") && luzLigada) {
+            luzLigada = false;
+            atualizarBotaoLuz();
+        }
+    }
+
+	 // Alerta de movimento (se o app estiver aberto, ele avisa)
+    if (topic === "portao/evento" && msg.includes("INFO: Luz ligada")) {
+        // Opcional: você pode colocar um som discreto aqui
     }
 
     // NOVO: Verifica se é um alerta do radar externo
@@ -83,6 +97,34 @@
                 alert("Não está conectado ao broker!");
             }
         }
+
+	let luzLigada = false;
+
+function toggleLuz() {
+    if (client && client.connected) {
+        let cmd = luzLigada ? "LIGHT_OFF" : "LIGHT_ON";
+        client.publish("portao/comando", cmd);
+        
+        // Atualização otimista na tela
+        luzLigada = !luzLigada;
+        atualizarBotaoLuz();
+    } else {
+        alert("Não está conectado!");
+    }
+}
+
+function atualizarBotaoLuz() {
+    let btn = document.getElementById("btnLuz");
+    if (luzLigada) {
+        btn.style.backgroundColor = "#FFC107"; // Amarelo brilhante
+        btn.style.color = "black";
+        btn.innerText = "LUZ ACESA";
+    } else {
+        btn.style.backgroundColor = "#333"; // Cinza escuro
+        btn.style.color = "white";
+        btn.innerText = "LUZ APAGADA";
+    }
+}
 
         // Inicia a conexão assim que a tela abre
         conectar();
