@@ -1,0 +1,449 @@
+[
+    {
+        "id": "c6c2b42570e7f2ed",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "08af9b5172798743",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "8dca212416db3a16",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "bfb008fc0bf86df7",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "08af9b5172798743",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "8dca212416db3a16",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "tabs": [],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ff1873dba823ced1",
+        "type": "ui-group",
+        "name": "Telemetria",
+        "page": "bfb008fc0bf86df7",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "6210a16a13f5e855",
+        "type": "tls-config",
+        "name": "EMQX TLS",
+        "certType": "files",
+        "cert": "",
+        "key": "",
+        "p12": "",
+        "p12name": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": "",
+        "certEnv": "",
+        "keyEnv": "",
+        "caEnv": ""
+    },
+    {
+        "id": "416c924e926664b6",
+        "type": "mqtt-broker",
+        "name": "Compaq Local",
+        "broker": "y2aa97c7.ala.eu-central-1.emqxsl.com",
+        "port": "8883",
+        "tls": "6210a16a13f5e855",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ac15f3af393f872e",
+        "type": "mqtt in",
+        "z": "c6c2b42570e7f2ed",
+        "name": "",
+        "topic": "portao/telemetria/#",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "416c924e926664b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 610,
+        "y": 380,
+        "wires": [
+            [
+                "dfe98a0bf48f9b0f"
+            ]
+        ]
+    },
+    {
+        "id": "dfe98a0bf48f9b0f",
+        "type": "switch",
+        "z": "c6c2b42570e7f2ed",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "rssi",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "snr",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 830,
+        "y": 380,
+        "wires": [
+            [
+                "cdfdbfab068389a0",
+                "47fda320b5d8cc7e"
+            ],
+            [
+                "0a4e97769cb7c8af",
+                "05e03ae05f0d9303"
+            ]
+        ]
+    },
+    {
+        "id": "cdfdbfab068389a0",
+        "type": "ui-chart",
+        "z": "c6c2b42570e7f2ed",
+        "group": "ff1873dba823ced1",
+        "name": "",
+        "label": "Nível de Sinal (RSSI)",
+        "order": 9007199254740991,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "-120",
+        "ymax": "0",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "4",
+        "height": "4",
+        "className": "",
+        "interpolation": "linear",
+        "x": 1100,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0a4e97769cb7c8af",
+        "type": "ui-chart",
+        "z": "c6c2b42570e7f2ed",
+        "group": "ff1873dba823ced1",
+        "name": "",
+        "label": "Relação Sinal Ruido (SNR)",
+        "order": 9007199254740991,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "-10",
+        "ymax": "20",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 4,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "3600",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": "4",
+        "height": "4",
+        "className": "",
+        "interpolation": "linear",
+        "x": 1120,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47fda320b5d8cc7e",
+        "type": "ui-gauge",
+        "z": "c6c2b42570e7f2ed",
+        "name": "",
+        "group": "ff1873dba823ced1",
+        "order": 0,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "RSSI Atual",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "dB",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "-110",
+                "color": "#ea5353",
+                "text": "sinal ruim",
+                "textType": "str"
+            },
+            {
+                "from": "-90",
+                "color": "#ffc800",
+                "text": "sinal médio",
+                "textType": "str"
+            },
+            {
+                "from": "-70",
+                "color": "#5cd65c",
+                "text": "sinal bom",
+                "textType": "str"
+            }
+        ],
+        "min": "-110",
+        "max": "0",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1090,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "05e03ae05f0d9303",
+        "type": "ui-gauge",
+        "z": "c6c2b42570e7f2ed",
+        "name": "",
+        "group": "ff1873dba823ced1",
+        "order": 0,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "2",
+        "height": "2",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "SNR Atual",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "dB",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "5",
+                "color": "#5cd65c",
+                "text": "bom",
+                "textType": "str"
+            },
+            {
+                "from": "0",
+                "color": "#ffc800",
+                "text": "medio",
+                "textType": "str"
+            },
+            {
+                "from": "-20",
+                "color": "#ea5353",
+                "text": "ruim",
+                "textType": "str"
+            }
+        ],
+        "min": "-20",
+        "max": "20",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 1090,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4de65accd729cbc7",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.34.1"
+        }
+    }
+]
