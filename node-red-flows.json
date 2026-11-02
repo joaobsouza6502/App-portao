@@ -8,95 +8,20 @@
         "env": []
     },
     {
-        "id": "08af9b5172798743",
-        "type": "ui-base",
-        "name": "My Dashboard",
-        "path": "/dashboard",
-        "appIcon": "",
-        "includeClientData": true,
-        "acceptsClientConfig": [
-            "ui-notification",
-            "ui-control"
-        ],
-        "showPathInSidebar": false,
-        "headerContent": "page",
-        "navigationStyle": "default",
-        "titleBarStyle": "default",
-        "showReconnectNotification": true,
-        "notificationDisplayTime": 1,
-        "showDisconnectNotification": true,
-        "allowInstall": false
+        "id": "2d5bb4ac7759bb48",
+        "type": "tab",
+        "label": "Fluxo 2",
+        "disabled": false,
+        "info": "",
+        "env": []
     },
     {
-        "id": "8dca212416db3a16",
-        "type": "ui-theme",
-        "name": "Default Theme",
-        "colors": {
-            "surface": "#fcfcfd",
-            "primary": "#0d74ce",
-            "bgPage": "#f9f9fb",
-            "groupBg": "#ffffff",
-            "groupOutline": "#d9d9e0"
-        },
-        "sizes": {
-            "density": "default",
-            "pagePadding": "12px",
-            "groupGap": "12px",
-            "groupBorderRadius": "4px",
-            "widgetGap": "12px"
-        }
-    },
-    {
-        "id": "bfb008fc0bf86df7",
-        "type": "ui-page",
-        "name": "Page 1",
-        "ui": "08af9b5172798743",
-        "path": "/page1",
-        "icon": "home",
-        "layout": "grid",
-        "theme": "8dca212416db3a16",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": 0,
-                "cols": 3
-            },
-            {
-                "name": "Tablet",
-                "px": 576,
-                "cols": 6
-            },
-            {
-                "name": "Small Desktop",
-                "px": 768,
-                "cols": 9
-            },
-            {
-                "name": "Desktop",
-                "px": 1024,
-                "cols": 12
-            }
-        ],
-        "tabs": [],
-        "order": 1,
-        "className": "",
-        "visible": "true",
-        "disabled": "false"
-    },
-    {
-        "id": "ff1873dba823ced1",
-        "type": "ui-group",
-        "name": "Telemetria",
-        "page": "bfb008fc0bf86df7",
-        "width": 6,
-        "height": 1,
-        "order": 1,
-        "showTitle": true,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default",
-        "tab": ""
+        "id": "88b920f08ed94ca7",
+        "type": "tab",
+        "label": "Fluxo 3",
+        "disabled": false,
+        "info": "",
+        "env": []
     },
     {
         "id": "6210a16a13f5e855",
@@ -151,6 +76,97 @@
         "sessionExpiry": ""
     },
     {
+        "id": "d6b9709c99429463",
+        "type": "ui-base",
+        "name": "Painel LoRa",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "a553eda4aea4e259",
+        "type": "ui-theme",
+        "name": "TemaPadrao",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "460f8cfa7908751e",
+        "type": "ui-page",
+        "name": "Home",
+        "ui": "d6b9709c99429463",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "a553eda4aea4e259",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "tabs": [],
+        "order": -1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "e5bf82843a4cd76d",
+        "type": "ui-group",
+        "name": "Group Name",
+        "page": "460f8cfa7908751e",
+        "width": 6,
+        "height": 1,
+        "order": -1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
         "id": "ac15f3af393f872e",
         "type": "mqtt in",
         "z": "c6c2b42570e7f2ed",
@@ -163,7 +179,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 610,
+        "x": 390,
         "y": 380,
         "wires": [
             [
@@ -181,28 +197,46 @@
         "rules": [
             {
                 "t": "cont",
-                "v": "rssi",
+                "v": "rssi_local",
                 "vt": "str"
             },
             {
                 "t": "cont",
-                "v": "snr",
+                "v": "rssi_remota",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "snr_local",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "snr_remota",
                 "vt": "str"
             }
         ],
         "checkall": "true",
         "repair": false,
-        "outputs": 2,
-        "x": 830,
+        "outputs": 4,
+        "x": 610,
         "y": 380,
         "wires": [
             [
                 "cdfdbfab068389a0",
-                "47fda320b5d8cc7e"
+                "d8e25b20e62309d1"
+            ],
+            [
+                "cdfdbfab068389a0",
+                "8c4d4dcb4f134762"
             ],
             [
                 "0a4e97769cb7c8af",
-                "05e03ae05f0d9303"
+                "8adcf2910536cec5"
+            ],
+            [
+                "0a4e97769cb7c8af",
+                "ac49578fe3fe08ec"
             ]
         ]
     },
@@ -210,8 +244,8 @@
         "id": "cdfdbfab068389a0",
         "type": "ui-chart",
         "z": "c6c2b42570e7f2ed",
-        "group": "ff1873dba823ced1",
-        "name": "",
+        "group": "e5bf82843a4cd76d",
+        "name": "Nível de Sinal (RSSI)",
         "label": "Nível de Sinal (RSSI)",
         "order": 9007199254740991,
         "chartType": "line",
@@ -234,17 +268,17 @@
         "action": "append",
         "stackSeries": false,
         "pointShape": "circle",
-        "pointRadius": 4,
+        "pointRadius": "1",
         "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
+        "removeOlder": "30",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "100000",
         "colors": [
             "#0095ff",
             "#ff0000",
             "#ff7f0e",
             "#2ca02c",
-            "#a347e1",
+            "#8021c0",
             "#d62728",
             "#ff9896",
             "#9467bd",
@@ -259,10 +293,10 @@
         ],
         "gridColorDefault": true,
         "width": "4",
-        "height": "4",
+        "height": "5",
         "className": "",
         "interpolation": "linear",
-        "x": 1100,
+        "x": 880,
         "y": 340,
         "wires": [
             []
@@ -272,8 +306,8 @@
         "id": "0a4e97769cb7c8af",
         "type": "ui-chart",
         "z": "c6c2b42570e7f2ed",
-        "group": "ff1873dba823ced1",
-        "name": "",
+        "group": "e5bf82843a4cd76d",
+        "name": "Relação Sinal Ruido (SNR)",
         "label": "Relação Sinal Ruido (SNR)",
         "order": 9007199254740991,
         "chartType": "line",
@@ -295,12 +329,12 @@
         "bins": 10,
         "action": "append",
         "stackSeries": false,
-        "pointShape": "circle",
-        "pointRadius": 4,
+        "pointShape": "cross",
+        "pointRadius": "1",
         "showLegend": true,
-        "removeOlder": 1,
-        "removeOlderUnit": "3600",
-        "removeOlderPoints": "",
+        "removeOlder": "30",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "100000",
         "colors": [
             "#0095ff",
             "#ff0000",
@@ -321,56 +355,56 @@
         ],
         "gridColorDefault": true,
         "width": "4",
-        "height": "4",
+        "height": "5",
         "className": "",
         "interpolation": "linear",
-        "x": 1120,
+        "x": 900,
         "y": 420,
         "wires": [
             []
         ]
     },
     {
-        "id": "47fda320b5d8cc7e",
+        "id": "d8e25b20e62309d1",
         "type": "ui-gauge",
         "z": "c6c2b42570e7f2ed",
-        "name": "",
-        "group": "ff1873dba823ced1",
+        "name": "RSSI_Local",
+        "group": "e5bf82843a4cd76d",
         "order": 0,
         "value": "payload",
         "valueType": "msg",
-        "width": "2",
-        "height": "2",
+        "width": "3",
+        "height": "3",
         "gtype": "gauge-half",
         "gstyle": "needle",
-        "title": "RSSI Atual",
+        "title": "RSSI_Local",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "dB",
+        "units": "",
         "icon": "",
         "prefix": "",
-        "suffix": "",
+        "suffix": "dB",
         "segments": [
             {
-                "from": "-110",
+                "from": "-120",
                 "color": "#ea5353",
-                "text": "sinal ruim",
+                "text": "dB",
                 "textType": "str"
             },
             {
                 "from": "-90",
                 "color": "#ffc800",
-                "text": "sinal médio",
+                "text": "dB",
                 "textType": "str"
             },
             {
                 "from": "-70",
                 "color": "#5cd65c",
-                "text": "sinal bom",
+                "text": "dB",
                 "textType": "str"
             }
         ],
-        "min": "-110",
+        "min": "-120",
         "max": "0",
         "sizeThickness": 16,
         "sizeGap": 4,
@@ -378,53 +412,53 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1090,
-        "y": 280,
+        "x": 870,
+        "y": 220,
         "wires": [
             []
         ]
     },
     {
-        "id": "05e03ae05f0d9303",
+        "id": "8adcf2910536cec5",
         "type": "ui-gauge",
         "z": "c6c2b42570e7f2ed",
-        "name": "",
-        "group": "ff1873dba823ced1",
+        "name": "SNR_Local",
+        "group": "e5bf82843a4cd76d",
         "order": 0,
         "value": "payload",
         "valueType": "msg",
-        "width": "2",
-        "height": "2",
+        "width": "3",
+        "height": "3",
         "gtype": "gauge-half",
         "gstyle": "needle",
-        "title": "SNR Atual",
+        "title": "SNR_Local",
         "alwaysShowTitle": false,
         "floatingTitlePosition": "top-left",
-        "units": "dB",
+        "units": "",
         "icon": "",
         "prefix": "",
-        "suffix": "",
+        "suffix": "dB",
         "segments": [
             {
-                "from": "5",
-                "color": "#5cd65c",
-                "text": "bom",
-                "textType": "str"
+                "from": "-20",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
             },
             {
                 "from": "0",
                 "color": "#ffc800",
-                "text": "medio",
-                "textType": "str"
+                "text": "",
+                "textType": "label"
             },
             {
-                "from": "-20",
-                "color": "#ea5353",
-                "text": "ruim",
-                "textType": "str"
+                "from": "5",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
             }
         ],
-        "min": "-20",
+        "min": "-10",
         "max": "20",
         "sizeThickness": 16,
         "sizeGap": 4,
@@ -432,14 +466,296 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 1090,
-        "y": 500,
+        "x": 870,
+        "y": 480,
         "wires": [
             []
         ]
     },
     {
-        "id": "4de65accd729cbc7",
+        "id": "8c4d4dcb4f134762",
+        "type": "ui-gauge",
+        "z": "c6c2b42570e7f2ed",
+        "name": "RSSI_Remoto",
+        "group": "e5bf82843a4cd76d",
+        "order": 0,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "RSSI_Remoto",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "",
+        "icon": "",
+        "prefix": "",
+        "suffix": "dB",
+        "segments": [
+            {
+                "from": "-120",
+                "color": "#ea5353",
+                "text": "dB",
+                "textType": "str"
+            },
+            {
+                "from": "-90",
+                "color": "#ffc800",
+                "text": "dB",
+                "textType": "str"
+            },
+            {
+                "from": "-70",
+                "color": "#5cd65c",
+                "text": "dB",
+                "textType": "str"
+            }
+        ],
+        "min": "-120",
+        "max": "0",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 880,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ac49578fe3fe08ec",
+        "type": "ui-gauge",
+        "z": "c6c2b42570e7f2ed",
+        "name": "SNR_Remoto",
+        "group": "e5bf82843a4cd76d",
+        "order": 0,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "3",
+        "height": "3",
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "SNR_Remoto",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "",
+        "icon": "",
+        "prefix": "",
+        "suffix": "dB",
+        "segments": [
+            {
+                "from": "-20",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "0",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "5",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": "-10",
+        "max": "20",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 880,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1810ec115a25ad3f",
+        "type": "ui-button",
+        "z": "c6c2b42570e7f2ed",
+        "group": "e5bf82843a4cd76d",
+        "name": "Mudar para SF12",
+        "label": "Mudar  para SF12",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "CFG_SF_12",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 370,
+        "y": 660,
+        "wires": [
+            [
+                "6550c24cf5ce6137"
+            ]
+        ]
+    },
+    {
+        "id": "6550c24cf5ce6137",
+        "type": "mqtt out",
+        "z": "c6c2b42570e7f2ed",
+        "name": "",
+        "topic": "portao/comando",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "416c924e926664b6",
+        "x": 680,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "1d266f9a1bff746a",
+        "type": "ui-button",
+        "z": "c6c2b42570e7f2ed",
+        "group": "e5bf82843a4cd76d",
+        "name": "Mudar para SF7",
+        "label": "Mudar  para SF7",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "CFG_SF_7",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 360,
+        "y": 720,
+        "wires": [
+            [
+                "6550c24cf5ce6137"
+            ]
+        ]
+    },
+    {
+        "id": "af3a6c1b76901db1",
+        "type": "ui-button",
+        "z": "c6c2b42570e7f2ed",
+        "group": "e5bf82843a4cd76d",
+        "name": "",
+        "label": "Potência 17dBm  (Máx)",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "CFG_PWR_17",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 380,
+        "y": 780,
+        "wires": [
+            [
+                "6550c24cf5ce6137"
+            ]
+        ]
+    },
+    {
+        "id": "70d2b6d5d8f57dec",
+        "type": "ui-button",
+        "z": "c6c2b42570e7f2ed",
+        "group": "e5bf82843a4cd76d",
+        "name": "",
+        "label": "Potência 2dBm (Mín)",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "CFG_PWR_2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 380,
+        "y": 840,
+        "wires": [
+            [
+                "6550c24cf5ce6137"
+            ]
+        ]
+    },
+    {
+        "id": "d9615e0ac9cc6125",
         "type": "global-config",
         "env": [],
         "modules": {
