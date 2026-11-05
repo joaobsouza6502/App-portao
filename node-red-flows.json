@@ -103,14 +103,14 @@
             "surface": "#fcfcfd",
             "primary": "#0d74ce",
             "bgPage": "#f9f9fb",
-            "groupBg": "#ffffff",
-            "groupOutline": "#d9d9e0"
+            "groupBg": "#eeaaaa",
+            "groupOutline": "#4343c7"
         },
         "sizes": {
-            "density": "default",
+            "density": "comfortable",
             "pagePadding": "12px",
             "groupGap": "12px",
-            "groupBorderRadius": "4px",
+            "groupBorderRadius": "20px",
             "widgetGap": "12px"
         }
     },
@@ -121,7 +121,7 @@
         "ui": "d6b9709c99429463",
         "path": "/page1",
         "icon": "home",
-        "layout": "grid",
+        "layout": "flex",
         "theme": "a553eda4aea4e259",
         "breakpoints": [
             {
@@ -146,7 +146,7 @@
             }
         ],
         "tabs": [],
-        "order": -1,
+        "order": 1,
         "className": "",
         "visible": "true",
         "disabled": "false"
@@ -154,11 +154,86 @@
     {
         "id": "e5bf82843a4cd76d",
         "type": "ui-group",
-        "name": "Group Name",
+        "name": "Gages Local",
         "page": "460f8cfa7908751e",
         "width": 6,
         "height": 1,
-        "order": -1,
+        "order": 5,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "d2fc5a01d555d357",
+        "type": "ui-group",
+        "name": "Gages Remoto",
+        "page": "460f8cfa7908751e",
+        "width": 6,
+        "height": 1,
+        "order": 6,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "c607146cae8d1cf8",
+        "type": "ui-group",
+        "name": "Switches",
+        "page": "460f8cfa7908751e",
+        "width": 6,
+        "height": 1,
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "cdb3a19ebbd4db68",
+        "type": "ui-group",
+        "name": "Grafico RSSI",
+        "page": "460f8cfa7908751e",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "1d9da108af76a0c6",
+        "type": "ui-group",
+        "name": "Grafico SNR",
+        "page": "460f8cfa7908751e",
+        "width": 6,
+        "height": 1,
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "tab": ""
+    },
+    {
+        "id": "53a4c5c40371f1fb",
+        "type": "ui-group",
+        "name": "Configuracoes",
+        "page": "460f8cfa7908751e",
+        "width": 6,
+        "height": 1,
+        "order": 1,
         "showTitle": true,
         "className": "",
         "visible": "true",
@@ -179,8 +254,8 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 390,
-        "y": 380,
+        "x": 510,
+        "y": 360,
         "wires": [
             [
                 "dfe98a0bf48f9b0f"
@@ -219,8 +294,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 610,
-        "y": 380,
+        "x": 730,
+        "y": 360,
         "wires": [
             [
                 "cdfdbfab068389a0",
@@ -244,10 +319,10 @@
         "id": "cdfdbfab068389a0",
         "type": "ui-chart",
         "z": "c6c2b42570e7f2ed",
-        "group": "e5bf82843a4cd76d",
+        "group": "cdb3a19ebbd4db68",
         "name": "Nível de Sinal (RSSI)",
         "label": "Nível de Sinal (RSSI)",
-        "order": 9007199254740991,
+        "order": 1,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -281,23 +356,23 @@
             "#8021c0",
             "#d62728",
             "#ff9896",
-            "#9467bd",
+            "#7735b6",
             "#c5b0d5"
         ],
         "textColor": [
-            "#666666"
+            "#b52c2c"
         ],
-        "textColorDefault": true,
+        "textColorDefault": false,
         "gridColor": [
-            "#e5e5e5"
+            "#c9d8ee"
         ],
-        "gridColorDefault": true,
-        "width": "4",
-        "height": "5",
+        "gridColorDefault": false,
+        "width": "6",
+        "height": "4",
         "className": "",
         "interpolation": "linear",
-        "x": 880,
-        "y": 340,
+        "x": 1000,
+        "y": 320,
         "wires": [
             []
         ]
@@ -306,10 +381,10 @@
         "id": "0a4e97769cb7c8af",
         "type": "ui-chart",
         "z": "c6c2b42570e7f2ed",
-        "group": "e5bf82843a4cd76d",
+        "group": "1d9da108af76a0c6",
         "name": "Relação Sinal Ruido (SNR)",
         "label": "Relação Sinal Ruido (SNR)",
-        "order": 9007199254740991,
+        "order": 1,
         "chartType": "line",
         "category": "topic",
         "categoryType": "msg",
@@ -329,7 +404,7 @@
         "bins": 10,
         "action": "append",
         "stackSeries": false,
-        "pointShape": "cross",
+        "pointShape": "circle",
         "pointRadius": "1",
         "showLegend": true,
         "removeOlder": "30",
@@ -347,19 +422,19 @@
             "#c5b0d5"
         ],
         "textColor": [
-            "#666666"
+            "#e63d3d"
         ],
-        "textColorDefault": true,
+        "textColorDefault": false,
         "gridColor": [
-            "#e5e5e5"
+            "#a9e9ea"
         ],
-        "gridColorDefault": true,
-        "width": "4",
-        "height": "5",
+        "gridColorDefault": false,
+        "width": "6",
+        "height": "4",
         "className": "",
         "interpolation": "linear",
-        "x": 900,
-        "y": 420,
+        "x": 1020,
+        "y": 400,
         "wires": [
             []
         ]
@@ -370,7 +445,7 @@
         "z": "c6c2b42570e7f2ed",
         "name": "RSSI_Local",
         "group": "e5bf82843a4cd76d",
-        "order": 0,
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -412,8 +487,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 870,
-        "y": 220,
+        "x": 990,
+        "y": 200,
         "wires": [
             []
         ]
@@ -424,7 +499,7 @@
         "z": "c6c2b42570e7f2ed",
         "name": "SNR_Local",
         "group": "e5bf82843a4cd76d",
-        "order": 0,
+        "order": 2,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -466,8 +541,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 870,
-        "y": 480,
+        "x": 990,
+        "y": 460,
         "wires": [
             []
         ]
@@ -477,8 +552,8 @@
         "type": "ui-gauge",
         "z": "c6c2b42570e7f2ed",
         "name": "RSSI_Remoto",
-        "group": "e5bf82843a4cd76d",
-        "order": 0,
+        "group": "d2fc5a01d555d357",
+        "order": 1,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -520,8 +595,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 880,
-        "y": 280,
+        "x": 1000,
+        "y": 260,
         "wires": [
             []
         ]
@@ -531,8 +606,8 @@
         "type": "ui-gauge",
         "z": "c6c2b42570e7f2ed",
         "name": "SNR_Remoto",
-        "group": "e5bf82843a4cd76d",
-        "order": 0,
+        "group": "d2fc5a01d555d357",
+        "order": 2,
         "value": "payload",
         "valueType": "msg",
         "width": "3",
@@ -574,8 +649,8 @@
         "styleRounded": true,
         "styleGlow": false,
         "className": "",
-        "x": 880,
-        "y": 560,
+        "x": 1000,
+        "y": 540,
         "wires": [
             []
         ]
@@ -584,12 +659,12 @@
         "id": "1810ec115a25ad3f",
         "type": "ui-button",
         "z": "c6c2b42570e7f2ed",
-        "group": "e5bf82843a4cd76d",
+        "group": "c607146cae8d1cf8",
         "name": "Mudar para SF12",
         "label": "Mudar  para SF12",
-        "order": 0,
-        "width": 0,
-        "height": 0,
+        "order": 3,
+        "width": "0",
+        "height": "0",
         "emulateClick": false,
         "tooltip": "",
         "color": "",
@@ -611,8 +686,8 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 370,
-        "y": 660,
+        "x": 470,
+        "y": 540,
         "wires": [
             [
                 "6550c24cf5ce6137"
@@ -625,7 +700,7 @@
         "z": "c6c2b42570e7f2ed",
         "name": "",
         "topic": "portao/comando",
-        "qos": "0",
+        "qos": "2",
         "retain": "",
         "respTopic": "",
         "contentType": "",
@@ -633,20 +708,20 @@
         "correl": "",
         "expiry": "",
         "broker": "416c924e926664b6",
-        "x": 680,
-        "y": 660,
+        "x": 1000,
+        "y": 640,
         "wires": []
     },
     {
         "id": "1d266f9a1bff746a",
         "type": "ui-button",
         "z": "c6c2b42570e7f2ed",
-        "group": "e5bf82843a4cd76d",
+        "group": "c607146cae8d1cf8",
         "name": "Mudar para SF7",
         "label": "Mudar  para SF7",
-        "order": 0,
-        "width": 0,
-        "height": 0,
+        "order": 4,
+        "width": "0",
+        "height": "0",
         "emulateClick": false,
         "tooltip": "",
         "color": "",
@@ -668,8 +743,8 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 360,
-        "y": 720,
+        "x": 460,
+        "y": 600,
         "wires": [
             [
                 "6550c24cf5ce6137"
@@ -680,12 +755,12 @@
         "id": "af3a6c1b76901db1",
         "type": "ui-button",
         "z": "c6c2b42570e7f2ed",
-        "group": "e5bf82843a4cd76d",
+        "group": "c607146cae8d1cf8",
         "name": "",
         "label": "Potência 17dBm  (Máx)",
-        "order": 0,
-        "width": 0,
-        "height": 0,
+        "order": 1,
+        "width": "0",
+        "height": "0",
         "emulateClick": false,
         "tooltip": "",
         "color": "",
@@ -707,8 +782,8 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 380,
-        "y": 780,
+        "x": 480,
+        "y": 660,
         "wires": [
             [
                 "6550c24cf5ce6137"
@@ -719,12 +794,12 @@
         "id": "70d2b6d5d8f57dec",
         "type": "ui-button",
         "z": "c6c2b42570e7f2ed",
-        "group": "e5bf82843a4cd76d",
+        "group": "c607146cae8d1cf8",
         "name": "",
         "label": "Potência 2dBm (Mín)",
-        "order": 0,
-        "width": 0,
-        "height": 0,
+        "order": 2,
+        "width": "0",
+        "height": "0",
         "emulateClick": false,
         "tooltip": "",
         "color": "",
@@ -746,8 +821,8 @@
         "enablePointerup": false,
         "pointerupPayload": "",
         "pointerupPayloadType": "str",
-        "x": 380,
-        "y": 840,
+        "x": 480,
+        "y": 720,
         "wires": [
             [
                 "6550c24cf5ce6137"
@@ -755,7 +830,232 @@
         ]
     },
     {
-        "id": "d9615e0ac9cc6125",
+        "id": "2729492fb8317a9f",
+        "type": "ui-text",
+        "z": "c6c2b42570e7f2ed",
+        "group": "53a4c5c40371f1fb",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "SF Atual",
+        "label": "SF Atual",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1000,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "f5ca9c15fdc6bd18",
+        "type": "ui-text",
+        "z": "c6c2b42570e7f2ed",
+        "group": "53a4c5c40371f1fb",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "PWR Atual",
+        "label": "PWR Atual",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1010,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "82d4c7b506bc5507",
+        "type": "ui-text",
+        "z": "c6c2b42570e7f2ed",
+        "group": "53a4c5c40371f1fb",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "CR Atual",
+        "label": "CR Atual",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1000,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "4da692e68e340478",
+        "type": "ui-text",
+        "z": "c6c2b42570e7f2ed",
+        "group": "53a4c5c40371f1fb",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "BW Atual",
+        "label": "BW Atual",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1000,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "44ce96894eb10f7b",
+        "type": "ui-text",
+        "z": "c6c2b42570e7f2ed",
+        "group": "53a4c5c40371f1fb",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Frequencia Atual",
+        "label": "FREQ Atual",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1030,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "2125a1c5a281e325",
+        "type": "mqtt in",
+        "z": "c6c2b42570e7f2ed",
+        "name": "SF Atual",
+        "topic": "portao/config/sf",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "416c924e926664b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 800,
+        "y": 840,
+        "wires": [
+            [
+                "2729492fb8317a9f"
+            ]
+        ]
+    },
+    {
+        "id": "5754b639c275e650",
+        "type": "mqtt in",
+        "z": "c6c2b42570e7f2ed",
+        "name": "PWR Atual",
+        "topic": "portao/config/pwr",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "416c924e926664b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 800,
+        "y": 900,
+        "wires": [
+            [
+                "f5ca9c15fdc6bd18"
+            ]
+        ]
+    },
+    {
+        "id": "43a1be5c4278d215",
+        "type": "mqtt in",
+        "z": "c6c2b42570e7f2ed",
+        "name": "CR Atual",
+        "topic": "portao/config/cr",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "416c924e926664b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 800,
+        "y": 960,
+        "wires": [
+            [
+                "82d4c7b506bc5507"
+            ]
+        ]
+    },
+    {
+        "id": "fc6fd420579d6811",
+        "type": "mqtt in",
+        "z": "c6c2b42570e7f2ed",
+        "name": "BW Atual",
+        "topic": "portao/config/bw",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "416c924e926664b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 800,
+        "y": 1020,
+        "wires": [
+            [
+                "4da692e68e340478"
+            ]
+        ]
+    },
+    {
+        "id": "e44464ee19298049",
+        "type": "mqtt in",
+        "z": "c6c2b42570e7f2ed",
+        "name": "FREQ Atual",
+        "topic": "portao/config/freq",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "416c924e926664b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 810,
+        "y": 1080,
+        "wires": [
+            [
+                "44ce96894eb10f7b"
+            ]
+        ]
+    },
+    {
+        "id": "2d783fd7ecdd77e2",
         "type": "global-config",
         "env": [],
         "modules": {
